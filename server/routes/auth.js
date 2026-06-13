@@ -3,12 +3,16 @@ import passport from 'passport'
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
 import { User } from '../models/User.js'
 
+// Strip any trailing slash so APP_URL + path never produces a double slash,
+// which Google rejects as a redirect_uri_mismatch.
+const APP_URL = (process.env.APP_URL || '').replace(/\/+$/, '')
+
 passport.use(new GoogleStrategy(
   {
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     // APP_URL is the single deployed domain (e.g. https://chalk.vercel.app)
-    callbackURL:  `${process.env.APP_URL}/api/auth/google/callback`,
+    callbackURL:  `${APP_URL}/api/auth/google/callback`,
   },
   async (accessToken, refreshToken, profile, done) => {
     try {
