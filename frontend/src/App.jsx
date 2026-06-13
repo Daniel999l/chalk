@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useMatch } from 'react-router-dom'
 import { AuthProvider, useAuth }                  from './context/AuthContext.jsx'
 import { AppProvider, useApp }                    from './context/AppContext.jsx'
 import Navbar         from './components/Navbar.jsx'
@@ -10,6 +10,7 @@ import GymMap         from './pages/GymMap.jsx'
 import PracticeDetail from './pages/PracticeDetail.jsx'
 import LessonPlans    from './pages/LessonPlans.jsx'
 import Teams          from './pages/Teams.jsx'
+import SharedView     from './pages/SharedView.jsx'
 
 function LoadingScreen() {
   return (
@@ -64,11 +65,19 @@ function AppShell() {
   )
 }
 
+function Root() {
+  // Public share page lives outside the auth gate AND outside AppProvider,
+  // so logged-out visitors can view it and imports don't race the autosave loop.
+  const shareMatch = useMatch('/s/:shareId')
+  if (shareMatch) return <SharedView shareId={shareMatch.params.shareId} />
+  return <AppShell />
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <AppShell />
+        <Root />
       </AuthProvider>
     </BrowserRouter>
   )

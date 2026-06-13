@@ -8,6 +8,7 @@ import passport   from 'passport'
 
 import authRouter     from './routes/auth.js'
 import userDataRouter from './routes/userData.js'
+import sharedRouter   from './routes/shared.js'
 
 const app = express()
 
@@ -56,6 +57,7 @@ app.use(passport.session())
 // ── Routes ────────────────────────────────────────────────────────────────────
 app.use('/api/auth',      authRouter)
 app.use('/api/user-data', userDataRouter)
+app.use('/api/shared',    sharedRouter)
 
 app.get('/api/health', (_req, res) =>
   res.json({ status: 'ok', app: 'Chalk', time: new Date().toISOString() })

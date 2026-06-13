@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { Plus, Pencil, Trash2, User, RotateCcw, Clock, Calendar } from 'lucide-react'
+import { Plus, Pencil, Trash2, User, RotateCcw, Clock, Calendar, Share2, Copy, ExternalLink } from 'lucide-react'
 import { useApp } from '../context/AppContext.jsx'
+import { api } from '../lib/api.js'
 import Modal from '../components/Modal.jsx'
 import BlockTypeTag from '../components/BlockTypeTag.jsx'
 import { TEAM_COLORS, BLOCK_TYPES } from '../data/seed.js'
@@ -89,13 +90,25 @@ function CoachForm({ teams, initial, onSave, onCancel }) {
 
 export default function Teams() {
   const { teams, coaches, rotations, plans, schedules, addTeam, updateTeam, deleteTeam,
-          addCoach, updateCoach, deleteCoach, resetRotation, updateSchedule } = useApp()
+          addCoach, updateCoach, deleteCoach, resetRotation, updateSchedule, showToast } = useApp()
   const [editTeam, setEditTeam]     = useState(null)
   const [showAddTeam, setShowAddTeam] = useState(false)
   const [editCoach, setEditCoach]   = useState(null)
   const [showAddCoach, setShowAddCoach] = useState(false)
   const [showRotations, setShowRotations] = useState(null)
   const [showSchedule, setShowSchedule]   = useState(null)
+  const [shareModal, setShareModal]       = useState(null)
+
+  async function handleShare(team) {
+    try {
+      const res = await api.post('/api/shared', { teamId: team.id })
+      if (res?.shareId) {
+        setShareModal({ url: `${window.location.origin}/s/${res.shareId}`, teamName: res.teamName || team.name })
+      }
+    } catch {
+      showToast('Could not create share link', 'error')
+    }
+  }
 
   return (
     <div className="space-y-5">
@@ -123,6 +136,7 @@ export default function Teams() {
                 </div>
                 <div className="flex gap-1">
                   {[
+                    { fn: () => handleShare(team), icon: Share2 },
                     { fn: () => setShowSchedule(team.id), icon: Calendar },
                     { fn: () => setShowRotations(team.id), icon: RotateCcw },
                     { fn: () => setEditTeam(team), icon: Pencil },
@@ -279,6 +293,30 @@ export default function Teams() {
           </Modal>
         )
       })()}
+
+      {shareModal && (
+        <Modal title="Share schedule" onClose={() => setShareModal(null)}>
+          <div className="space-y-4">
+            <p className="text-sm text-muted">
+              Anyone with this link can view <strong className="text-ink">{shareModal.teamName}</strong>'s
+              schedule — no account needed. Other coaches can import it into their own Chalk.
+            </p>
+            <div className="flex gap-2">
+              <input readOnly value={shareModal.url}
+                onClick={e => e.target.select()}
+                className="neo-input flex-1 text-xs" />
+              <button onClick={() => { navigator.clipboard?.writeText(shareModal.url); showToast('Link copied') }}
+                className="btn-dark flex items-center gap-1 shrink-0">
+                <Copy size={13} /> Copy
+              </button>
+            </div>
+            <a href={shareModal.url} target="_blank" rel="noreferrer"
+               className="inline-flex items-center gap-1 text-xs text-muted hover:text-ink transition-colors">
+              <ExternalLink size={11} /> Open preview
+            </a>
+          </div>
+        </Modal>
+      )}
     </div>
   )
 }
