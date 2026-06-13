@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build":        "cd frontend && npm install && npm run build",
-    "dev:api":      "cd api && npm run dev",
+    "dev:api":      "cd server && npm run dev",
     "dev:frontend": "cd frontend && npm run dev"
   },
   "dependencies": {
