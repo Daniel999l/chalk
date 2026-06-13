@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg:          #ECEADF;
+    --surface:     #FFFFFF;
+    --accent:      #C8E83A;
+    --accent-soft: #EEF7C0;
+    --ink:         #1A1A18;
+    --muted:       #6B6865;
+    --border:      #E0DDD4;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+}
+
+@layer components {
+
+  /* ── Card ─────────────────────────────────────────── */
+  .card {
+    @apply rounded-xl shadow-card;
+    background-color: var(--surface);
+  }
+
+  /* legacy alias used throughout pages */
+  .neo-card        { @apply card; }
+  .neo-card-yellow { @apply card bg-accent-soft; }
+  .neo-card-orange { @apply card; }
+  .neo-card-cyan   { @apply card; }
+  .neo-card-muted  { @apply card; }
+
+  /* ── Buttons ──────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2
+           rounded-lg px-4 py-2 text-sm font-semibold
+           transition-all duration-150 cursor-pointer;
+  }
+  .btn-accent {
+    @apply btn bg-accent text-ink shadow-btn
+           hover:brightness-105 hover:-translate-y-px hover:shadow-card
+           active:translate-y-0 active:brightness-100;
+  }
+  .btn-dark {
+    @apply btn bg-ink text-white shadow-btn
+           hover:opacity-85 hover:-translate-y-px hover:shadow-card
+           active:translate-y-0 active:opacity-100;
+  }
+  .btn-outline {
+    @apply btn bg-white text-ink border border-border
+           hover:border-ink/30 hover:-translate-y-px hover:shadow-btn
+           active:translate-y-0;
+  }
+
+  /* legacy aliases */
+  .neo-btn         { @apply btn; }
+  .neo-btn-yellow  { @apply btn-accent; }
+  .neo-btn-black   { @apply btn-dark; }
+  .neo-btn-white   { @apply btn-outline; }
+  .neo-btn-orange  { @apply btn-dark; }
+  .neo-btn-cyan    { @apply btn-dark; }
+  .neo-btn-green   { @apply btn-dark; }
+  .neo-btn-pink    { @apply btn-dark; }
+  .neo-btn-muted   { @apply btn-outline; }
+
+  /* ── Inputs ───────────────────────────────────────── */
+  .neo-input {
+    @apply w-full bg-white border border-border rounded-lg px-3 py-2 text-sm
+           placeholder:text-muted
+           focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent
+           transition-all duration-150;
+  }
+  .neo-select {
+    @apply neo-input appearance-none cursor-pointer;
+  }
+
+  /* ── Tags ─────────────────────────────────────────── */
+  .neo-tag {
+    @apply inline-flex items-center rounded-md px-2 py-0.5
+           text-xs font-semibold bg-[var(--bg)] text-muted border border-border;
+  }
+  .tag-accent {
+    @apply inline-flex items-center rounded-md px-2 py-0.5
+           text-xs font-semibold bg-accent-soft text-ink border border-accent/40;
+  }
+
+  /* ── Labels ───────────────────────────────────────── */
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-widest text-muted;
+  }
+  .page-title {
+    @apply text-3xl font-bold tracking-tight text-ink;
+  }
+}
+
+/* ── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Modal ────────────────────────────────────────────── */
+.modal-backdrop {
+  backdrop-filter: blur(6px);
+  background: rgba(26,26,24,0.4);
+}

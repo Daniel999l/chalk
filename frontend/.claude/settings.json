@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"import\\('./src/routes/auth.js'\\).then\\(\\(\\)=>console.log\\('auth ok'\\)\\).catch\\(e=>console.error\\(e.message\\)\\)\")"
+    ],
+    "additionalDirectories": [
+      "c:\\PROJECTS\\hackathon\\coachflow\\api",
+      "c:\\PROJECTS\\hackathon\\coachflow"
+    ]
+  }
+}
