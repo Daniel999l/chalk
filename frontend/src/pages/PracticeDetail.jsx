@@ -109,21 +109,21 @@ export default function PracticeDetail() {
 
       {/* Header card */}
       <div className="card overflow-hidden">
-        <div className="px-6 py-5 border-b border-border flex items-start justify-between gap-4">
+        <div className="px-4 sm:px-6 py-5 border-b border-border flex items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="w-3 h-3 rounded-full shrink-0" style={{ background: team.color }} />
               <p className="section-label">Practice Plan</p>
             </div>
-            <h1 className="text-2xl font-bold text-ink">{team.name}</h1>
-            <p className="text-muted text-sm mt-0.5">{format(parseISO(date), 'EEEE, MMMM d, yyyy')}</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-ink">{team.name}</h1>
+            <p className="text-muted text-xs sm:text-sm mt-0.5">{format(parseISO(date), 'EEEE, MMMM d, yyyy')}</p>
           </div>
           <div className="text-right shrink-0">
-            <p className="text-3xl font-bold text-ink">{practice.startTime}</p>
+            <p className="text-2xl sm:text-3xl font-bold text-ink">{practice.startTime}</p>
             <p className="text-muted text-sm">– {practice.endTime}</p>
           </div>
         </div>
-        <div className="px-6 py-3 flex items-center gap-8" style={{ background: 'var(--bg)' }}>
+        <div className="px-4 sm:px-6 py-3 flex flex-wrap items-center gap-x-8 gap-y-3" style={{ background: 'var(--bg)' }}>
           {[
             ['Blocks', practice.blocks.length],
             ['Duration', `${h > 0 ? h + 'h ' : ''}${m > 0 ? m + 'm' : ''}`],

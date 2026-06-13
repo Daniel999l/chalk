@@ -112,7 +112,7 @@ export default function Teams() {
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <h1 className="page-title">Teams & Coaches</h1>
         <div className="flex gap-2">
           <button onClick={() => setShowAddCoach(true)} className="btn-outline flex items-center gap-1 text-sm"><Plus size={13} /> Coach</button>

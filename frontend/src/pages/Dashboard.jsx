@@ -34,7 +34,7 @@ export default function Dashboard() {
            style={{ background: 'var(--accent)' }}>
         <div>
           <p className="text-xs font-semibold uppercase tracking-widest text-ink/50 mb-1">Today</p>
-          <h1 className="text-4xl font-bold text-ink leading-none">
+          <h1 className="text-3xl sm:text-4xl font-bold text-ink leading-none">
             {format(new Date(), 'EEEE')}
           </h1>
           <p className="text-ink/60 font-medium mt-1">{format(new Date(), 'MMMM d, yyyy')}</p>

@@ -19,18 +19,18 @@ export default function Landing() {
       </header>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-16 pb-20 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-soft border border-accent/40 text-xs font-semibold text-ink mb-8">
+      <section className="max-w-5xl mx-auto px-6 pt-10 sm:pt-16 pb-16 sm:pb-20 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-soft border border-accent/40 text-xs font-semibold text-ink mb-6 sm:mb-8">
           <Zap size={11} className="text-ink" /> Built for NextGenHacks 2026
         </div>
-        <h1 className="text-5xl sm:text-6xl font-bold text-ink tracking-tight leading-[1.05] mb-6">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-ink tracking-tight leading-[1.1] sm:leading-[1.05] mb-6">
           Practice scheduling<br />
           <span className="relative inline-block">
             that never repeats.
             <span className="absolute -bottom-1 left-0 w-full h-3 rounded-full bg-accent/40 -z-10" />
           </span>
         </h1>
-        <p className="text-lg text-muted max-w-xl mx-auto mb-10 leading-relaxed">
+        <p className="text-base sm:text-lg text-muted max-w-xl mx-auto mb-10 leading-relaxed">
           Chalk auto-rotates your lesson plans by visit count - not calendar date.
           Every session gets the right drill, exactly when it's due.
         </p>
@@ -101,7 +101,7 @@ export default function Landing() {
       {/* Footer CTA */}
       <section className="max-w-5xl mx-auto px-6 pb-20 text-center">
         <div className="card p-10" style={{ background: 'var(--accent)' }}>
-          <h2 className="text-3xl font-bold text-ink mb-3 tracking-tight">Ready to get started?</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-ink mb-3 tracking-tight">Ready to get started?</h2>
           <p className="text-ink/60 mb-6">Sign in with Google - takes 10 seconds.</p>
           <button onClick={login} className="btn-dark mx-auto px-8 py-3 text-base rounded-xl">
             Sign in with Google

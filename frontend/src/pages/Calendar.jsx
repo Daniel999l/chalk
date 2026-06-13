@@ -32,7 +32,7 @@ export default function Calendar() {
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <h1 className="page-title">Calendar</h1>
         <div className="flex items-center gap-2">
           <button onClick={() => setCurrent(subMonths(current, 1))} className="btn-outline p-2">
@@ -48,7 +48,7 @@ export default function Calendar() {
         </div>
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex flex-col lg:flex-row gap-4">
         {/* Grid */}
         <div className="flex-1 min-w-0 card overflow-hidden">
           <div className="grid grid-cols-7 border-b border-border">
@@ -88,9 +88,9 @@ export default function Calendar() {
         </div>
 
         {/* Side panel */}
-        <div className="w-56 shrink-0 space-y-3">
+        <div className="w-full lg:w-56 lg:shrink-0 space-y-3">
           {selectedDate ? (
-            <div className="card overflow-hidden sticky top-20">
+            <div className="card overflow-hidden lg:sticky lg:top-20">
               <div className="px-4 py-3 border-b border-border">
                 <p className="section-label">Selected</p>
                 <p className="font-semibold text-ink mt-0.5">{format(selectedDate, 'EEE, MMM d')}</p>
@@ -139,13 +139,13 @@ export default function Calendar() {
               </div>
             </div>
           ) : (
-            <div className="card p-5 text-center sticky top-20">
+            <div className="card p-5 text-center lg:sticky lg:top-20">
               <p className="font-semibold text-ink text-sm mb-1">Select a day</p>
               <p className="text-xs text-muted">Click any date to see teams.</p>
             </div>
           )}
 
-          <div className="card p-4 sticky top-[280px]">
+          <div className="card p-4 lg:sticky lg:top-[280px]">
             <p className="section-label mb-3">Teams</p>
             <div className="space-y-2">
               {teams.map(team => (
