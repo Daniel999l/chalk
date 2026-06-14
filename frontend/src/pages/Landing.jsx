@@ -109,8 +109,12 @@ export default function Landing() {
         </div>
       </section>
 
-      <footer className="text-center pb-8 text-xs text-muted">
-        Chalk - Practice Scheduling for Coaches · NextGenHacks 2026
+      <footer className="flex flex-col items-center gap-4 pb-8 text-xs text-muted">
+        <a href="https://orynth.dev/projects/chalk" target="_blank" rel="noopener noreferrer">
+          <img src="https://orynth.dev/api/badge/chalk?theme=light&style=default"
+               alt="Featured on Orynth" width="260" height="80" />
+        </a>
+        <span>Chalk - Practice Scheduling for Coaches · NextGenHacks 2026</span>
       </footer>
 
     </div>
